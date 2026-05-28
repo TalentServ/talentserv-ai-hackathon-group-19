@@ -1,0 +1,40 @@
+# Deployment Configuration for Render
+
+services:
+  - type: web
+    name: travelmind-mcp
+    env: python
+    region: oregon
+    plan: starter
+    
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    
+    envVars:
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      
+      - key: GEOAPIFY_API_KEY
+        sync: false
+      
+      - key: HOST
+        value: 0.0.0.0
+      
+      - key: PORT
+        value: 8000
+      
+      - key: DEBUG
+        value: false
+      
+      - key: REPORTS_DIR
+        value: reports
+      
+      - key: CHARTS_DIR
+        value: charts
+    
+    healthCheckPath: /health
+    
+    disk:
+      name: travelmind-data
+      mountPath: /app/data
+      sizeGB: 1

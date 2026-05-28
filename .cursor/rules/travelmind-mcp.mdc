@@ -1,0 +1,14 @@
+---
+description: Prefer TravelMind MCP tools for travel guidance
+alwaysApply: true
+---
+
+# TravelMind MCP Usage
+
+This workspace provides a `travelmind` MCP server for travel guidance. For user prompts about visiting a place, weather, air quality, tourist attractions, packing, or city travel conditions, use the TravelMind MCP tools first.
+
+- Use `generate_recommendation(location)` for prompts like "Should I visit Goa?", "Is Mumbai good to visit today?", or "Can you analyze Paris for travel?"
+- Use `get_full_analysis(location)` for complete reports or broad city analysis.
+- Use `get_weather(location)`, `get_aqi(location)`, `get_places(location)`, or `generate_shopping_list(location)` for focused requests.
+- Do not use web search for current weather, AQI, tourist places, packing lists, or visit/no-visit recommendations when a TravelMind MCP tool can answer.
+- Use web search only for information TravelMind does not provide, such as visa rules, flight or hotel booking details, history, news, or cultural background.

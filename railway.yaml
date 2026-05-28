@@ -1,0 +1,49 @@
+# Deployment Configuration for Railway
+
+services:
+  - name: travelmind-mcp
+    type: web
+    env: python
+    plan: starter
+    
+    build:
+      command: pip install -r requirements.txt
+    
+    start:
+      command: python main.py
+    
+    env:
+      - key: OPENWEATHER_API_KEY
+        description: OpenWeatherMap API key
+        required: true
+      
+      - key: GEOAPIFY_API_KEY
+        description: Geoapify Places API key
+        required: true
+      
+      - key: HOST
+        value: 0.0.0.0
+      
+      - key: PORT
+        value: 8000
+      
+      - key: DEBUG
+        value: False
+      
+      - key: REPORTS_DIR
+        value: reports
+      
+      - key: CHARTS_DIR
+        value: charts
+    
+    healthcheck:
+      path: /health
+      interval: 30
+      timeout: 10
+    
+    volumes:
+      - name: reports
+        path: /app/reports
+      
+      - name: charts
+        path: /app/charts
